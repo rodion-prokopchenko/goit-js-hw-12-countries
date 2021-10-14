@@ -2,6 +2,7 @@ import './sass/main.scss';
 import countriesAll from './templates/countries.hbs';
 import country from './templates/country.hbs';
 import Fetch from './partials/fetchCountries';
+
 import { alert, defaultModules } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import * as PNotifyMobile from '@pnotify/mobile';
