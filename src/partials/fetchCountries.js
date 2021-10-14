@@ -7,18 +7,19 @@ const options = {
 };
 
 export default class Fetch {
-  constructor(searchQueary, page) {
+  constructor(searchQueary) {
     this.searchQueary = '';
-    this.page = 1;
   }
 
   fetchArticles() {
-    const url = `${BASE_URL}/all?fields=${this.searchQueary}&`;
+    const url = `${BASE_URL}/name/${this.searchQueary}`;
     fetch(url, options)
       .then(r => r.json())
-      .then();
+      .then(({ countries }) => {
+        return countries;
+      });
   }
-  set query(newQuery) {
-    this.searchQuery = newQuery;
+  set queary(newQuery) {
+    this.searchQueary = newQuery;
   }
 }
