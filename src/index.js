@@ -7,22 +7,23 @@ const refs = {
   countriesContainer: document.querySelector('.countriesConrainer'),
 };
 
-const fetch = new Fetch();
+const fetchF = new Fetch();
 
 refs.searchForm.addEventListener('input', onSearch);
-console.log(fetch.fetchCountries(fetch));
+console.log(fetchF.fetchCountries(fetch));
 
-function createCountries(countries) {
-  console.log(countriesAll(countries));
-  return countriesAll(countries);
+function createCountries(fetchF) {
+  return countriesAll(fetchF);
 }
+console.log(createCountries(fetchF));
 
-function appendCountries(countries) {
-  refs.countriesContainer.insertAdjacentHTML('beforeend', createCountries(countries));
+function appendCountries(fetchF) {
+  refs.countriesContainer.insertAdjacentHTML('beforeend', createCountries(fetchF));
 }
 
 function onSearch(e) {
-  fetch.queary = e.currentTarget.elements.query.value;
-  fetch.fetchCountries();
-  appendCountries(countries);
+  fetchF.queary = e.currentTarget.elements.query.value;
+  fetchF.fetchCountries();
+  console.log(fetchF.fetchCountries);
+  appendCountries(fetchF.fetchCountries);
 }
