@@ -7,7 +7,7 @@ import { alert, defaultModules } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import * as PNotifyMobile from '@pnotify/mobile';
 import '@pnotify/mobile/dist/PNotifyMobile.css';
-
+var debounce = require('lodash.debounce');
 defaultModules.set(PNotifyMobile, {});
 
 const refs = {
