@@ -43,6 +43,7 @@ function onSearch(e) {
   clearCountriesContainer();
 
   fetchF.fetchCountries().then(countries => {
+    console.log(countries);
     if (countries.length > 10) {
       return alert({
         text: 'Too many marches found. Please enter a more specific query',
@@ -53,7 +54,8 @@ function onSearch(e) {
       console.log(countries);
       return appendCountries(countries);
     }
-
-    appendCountry(countries);
+    if (countries.length <= 1) {
+      appendCountry(countries);
+    }
   });
 }
