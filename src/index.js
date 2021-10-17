@@ -10,7 +10,6 @@ import '@pnotify/mobile/dist/PNotifyMobile.css';
 
 defaultModules.set(PNotifyMobile, {});
 
-console.log(country);
 const refs = {
   searchForm: document.querySelector('.js-search-form'),
   countriesContainer: document.querySelector('.countriesConrainer'),
@@ -20,31 +19,41 @@ const fetchF = new Fetch();
 
 refs.searchForm.addEventListener('input', onSearch);
 
-function createCountries() {
-  return countriesAll(fetchF);
-}
-function createCountry() {
-  return country(fetchF);
-}
-function appendCountry() {
-  refs.countriesContainer.insertAdjacentHTML('beforeend', createCountry(fetchF.fetchCountries));
+function clearCountriesContainer() {
+  refs.countriesContainer.textContent = '';
 }
 
-function appendCountries() {
-  refs.countriesContainer.insertAdjacentHTML('beforeend', createCountries(fetchF.fetchCountries));
+function createCountries(e) {
+  return countriesAll(e);
+}
+function createCountry(e) {
+  return country(e);
+}
+function appendCountry(e) {
+  refs.countriesContainer.insertAdjacentHTML('beforeend', createCountry(e));
+}
+
+function appendCountries(e) {
+  refs.countriesContainer.insertAdjacentHTML('beforeend', createCountries(e));
 }
 
 function onSearch(e) {
   fetchF.queary = e.currentTarget.elements.query.value;
-  fetchF.fetchCountries();
-  //     if (fetchF.fetchCountries().lenght > 10) {
-  //       alert({
-  //         text: 'Too many marches found. Please enter a more specific query',
-  //       });
-  //   }
-  // if(fetchF.fetchCountries.lenght=== =>2 && <=10){
-  // appendCountries()
-  //   }
-  console.log(fetchF.fetchCountries);
-  appendCountry();
+
+  clearCountriesContainer();
+
+  fetchF.fetchCountries().then(countries => {
+    if (countries.length > 10) {
+      return alert({
+        text: 'Too many marches found. Please enter a more specific query',
+      });
+    }
+
+    if (countries.length >= 2 && countries.length <= 10) {
+      console.log(countries);
+      return appendCountries(countries);
+    }
+
+    appendCountry(countries);
+  });
 }

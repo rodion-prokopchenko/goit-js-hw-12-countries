@@ -7,14 +7,9 @@ export default class Fetch {
 
   fetchCountries() {
     const url = `${BASE_URL}/name/${this.searchQueary}`;
-    console.log(url);
+    // console.log(url);
 
-    return fetch(url)
-      .then(response => response.json())
-      .then(countries => {
-        console.log(countries);
-        return countries;
-      });
+    return fetch(url).then(response => response.json());
   }
 
   set queary(newQuery) {
