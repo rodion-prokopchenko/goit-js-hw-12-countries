@@ -10,6 +10,10 @@ export default class Fetch {
     return fetch(url).then(response => response.json());
   }
 
+  get(queary) {
+    return this.searchQueary;
+  }
+
   set queary(newQuery) {
     this.searchQueary = newQuery;
   }

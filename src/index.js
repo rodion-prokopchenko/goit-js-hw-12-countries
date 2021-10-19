@@ -7,7 +7,7 @@ import { alert, defaultModules } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import * as PNotifyMobile from '@pnotify/mobile';
 import '@pnotify/mobile/dist/PNotifyMobile.css';
-var debounce = require('lodash.debounce');
+import debounce from 'lodash.debounce';
 defaultModules.set(PNotifyMobile, {});
 
 const refs = {
@@ -17,7 +17,7 @@ const refs = {
 
 const fetchF = new Fetch();
 
-refs.searchForm.addEventListener('input', onSearch);
+refs.searchForm.addEventListener('input', debounce(onSearch, 500));
 
 function clearCountriesContainer() {
   refs.countriesContainer.textContent = '';
@@ -38,7 +38,7 @@ function appendCountries(e) {
 }
 
 function onSearch(e) {
-  fetchF.queary = e.currentTarget.elements.query.value;
+  fetchF.queary = e.target.value;
 
   clearCountriesContainer();
 
